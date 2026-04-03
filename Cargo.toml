@@ -1,0 +1,38 @@
+[package]
+name = "dtproto_ffi"
+version = "3.0.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+authors = ["TempTalkOrg"]
+description = "End-to-end encryption protocol for messaging"
+repository = "https://github.com/TempTalkOrg/dtproto"
+
+[dependencies]
+uniffi = { version = "0.23.0", features = ["cli"] }
+curve25519-dalek = { version = "4", features = ["digest"] }
+x25519-dalek = { version = "2", features = ["static_secrets"] }
+rand = "0.8"
+subtle = "2.6"
+sha2 = "0.10"
+hmac = "0.12"
+arrayref = "0.3"
+aes-gcm = "0.10.3"
+thiserror = "2"
+bytes = "1"
+
+neon = { version = "1", default-features = false, features = ["napi-6"] }
+
+[build-dependencies]
+uniffi = { version = "0.23.0", features = [ "build", "cli" ] }
+
+[lib]
+crate-type = ["staticlib", "cdylib", "rlib"]
+name = "uniffi_dtproto"
+
+[[bin]]
+# This can be whatever name makes sense for your project, but the rest of this tutorial assumes uniffi-bindgen.
+name = "uniffi-bindgen"
+path = "uniffi-bindgen.rs"
+
+[profile.release]
+strip = true

@@ -1,0 +1,71 @@
+namespace dtproto {
+  string lib_name();
+};
+
+dictionary DTEncryptedMessage {
+    sequence<u8> cipher_text;
+    sequence<u8> signed_e_key;
+    sequence<u8> e_key;
+    sequence<u8> identity_key;
+    record<DOMString, sequence<u8>>? erm_keys;
+};
+
+enum IdentityVerifyResult {
+    "Match",
+    "CacheOutdated",
+    "SenderKeyUpdated",
+    "AllMismatch",
+};
+
+dictionary DTDecryptedMessage {
+    sequence<u8> plain_text;
+    IdentityVerifyResult identity_verify_result;
+};
+
+dictionary DTEncryptedRTMMessage {
+    sequence<u8> cipher_text;
+    sequence<u8> signature;
+};
+
+dictionary DTDecryptedRTMMessage {
+    sequence<u8> plain_text;
+    boolean verified_id_result;
+};
+
+dictionary DTEncryptedKey {
+    sequence<u8> m_key;
+    record<DOMString, sequence<u8>> e_m_keys;
+    sequence<u8> e_key;
+};
+
+dictionary DTDecryptedKey {
+    sequence<u8> m_key;
+};
+
+[Error]
+enum DTProtoError {
+    "VersionError",
+    "ParamsError",
+    "VerifySignatureError",
+    "KeyDataLengthError",
+    "MessageDataLengthError",
+    "EncryptMessageDataError",
+    "DecryptMessageDataError",
+};
+
+interface DTProto {
+  constructor(i32 version);
+  [Throws=DTProtoError]
+  DTDecryptedMessage decrypt_message(sequence<u8> signed_e_key, sequence<u8> their_id_key, sequence<u8> local_their_id_key, sequence<u8>? cached_their_id_key, sequence<u8> e_key, sequence<u8> local_pri_key, sequence<u8> erm_key, sequence<u8> cipher_text);
+  [Throws=DTProtoError]
+  DTEncryptedMessage encrypt_message(sequence<u8> pub_id_key, record<DOMString, sequence<u8>> pub_id_keys, sequence<u8> local_pri_key, sequence<u8> plain_text);
+  [Throws=DTProtoError]
+  DTDecryptedKey decrypt_key(sequence<u8> e_key, sequence<u8> local_pri_key, sequence<u8> e_m_key);
+  [Throws=DTProtoError]
+  DTEncryptedKey encrypt_key(record<DOMString, sequence<u8>> pub_id_keys, sequence<u8>? m_key);
+  sequence<u8> generate_key();
+  [Throws=DTProtoError]
+  DTDecryptedRTMMessage decrypt_rtm_message(sequence<u8> signature, sequence<u8>? their_local_id_key, sequence<u8> aes_key, sequence<u8> cipher_text);
+  [Throws=DTProtoError]
+  DTEncryptedRTMMessage encrypt_rtm_message(sequence<u8> aes_key, sequence<u8> local_pri_key, sequence<u8> plain_text);
+};
