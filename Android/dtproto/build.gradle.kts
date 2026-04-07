@@ -68,18 +68,6 @@ afterEvaluate {
                             url.set("https://www.gnu.org/licenses/agpl-3.0.txt")
                         }
                     }
-                    withXml {
-                        asNode().dependencies.dependency.findAll {
-                            it.groupId.text() == "net.java.dev.jna" &&
-                                it.artifactId.text() == "jna"
-                        }.each {
-                            if (it.type.isEmpty()) {
-                                it.appendNode("type", "aar")
-                            } else {
-                                it.type[0].value = "aar"
-                            }
-                        }
-                    }
                 }
             }
         }
