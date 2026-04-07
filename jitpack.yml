@@ -1,4 +1,32 @@
 jdk:
   - openjdk17
+
+env:
+  JITPACK: "true"
+  ANDROID_NDK_VERSION: "28.0.13004108"
+
+before_install:
+  # Android SDK command-line tools + NDK (provides cross-compile linkers for Rust Android targets)
+  - |
+    curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o /tmp/cmdtools.zip
+    mkdir -p $ANDROID_HOME/cmdline-tools
+    unzip -q -o /tmp/cmdtools.zip -d /tmp/cmdtools-extract
+    rm -rf $ANDROID_HOME/cmdline-tools/latest
+    mv /tmp/cmdtools-extract/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+    rm -f /tmp/cmdtools.zip
+  - yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+  - $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;${ANDROID_NDK_VERSION}" "cmake;3.22.1"
+  - export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/${ANDROID_NDK_VERSION}"
+  # Rust toolchain + Android targets (each YAML item runs in a fresh shell, so chain in one line)
+  - |
+    curl -fsSL https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal
+    export PATH="$HOME/.cargo/bin:$PATH"
+    rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
+
 install:
+  - export PATH="$HOME/.cargo/bin:$ANDROID_HOME/cmake/3.22.1/bin:$PATH"
+  - export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/${ANDROID_NDK_VERSION}"
+  # 1) Build Rust .so for the 3 Android ABIs and copy into the Gradle module's jniLibs
+  - bash Android/android-dtproto-jniLibs.sh
+  # 2) Publish AAR (now containing native libs) to local Maven for JitPack to pick up
   - cd Android && ./gradlew :dtproto:publishToMavenLocal

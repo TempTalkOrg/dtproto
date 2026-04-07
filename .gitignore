@@ -1,6 +1,7 @@
 # Build artifacts
 /target
 *.node
+.cargo/config.toml
 
 # Android
 Android/NDK/*
