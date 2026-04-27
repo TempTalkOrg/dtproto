@@ -1,0 +1,48 @@
+name: DTProtoTestProject
+options:
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+settings:
+  DTPROTO_VERSION: "3.1.0"
+
+targets:
+  DTProto:
+    type: framework
+    platform: iOS
+    sources:
+      - path: ../DTProto/dtproto.swift
+        group: Sources
+      - path: ../DTProto/DTProtoAdapter.swift
+        group: Sources
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: org.temptalk.dtproto
+      GENERATE_INFOPLIST_FILE: true
+      SWIFT_INCLUDE_PATHS: $(SRCROOT)/../DTProto/dtprotoFFI
+      LIBRARY_SEARCH_PATHS: $(SRCROOT)/../DTProto/libdtproto_ffi/libdtproto_ffi_$(DTPROTO_VERSION)/$(PLATFORM_NAME)
+      OTHER_LDFLAGS: -ldtproto_ffi
+
+  DTProtoTestApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: TestApp
+    dependencies:
+      - target: DTProto
+        embed: true
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: org.temptalk.dtproto.testapp
+      GENERATE_INFOPLIST_FILE: true
+
+  DTProtoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ../DTProtoTests.swift
+        group: Tests
+    dependencies:
+      - target: DTProtoTestApp
+    settings:
+      GENERATE_INFOPLIST_FILE: true
+      SWIFT_INCLUDE_PATHS: $(SRCROOT)/../DTProto/dtprotoFFI

@@ -10,6 +10,7 @@ android {
 
     defaultConfig {
         minSdk = 21
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -46,6 +47,8 @@ dependencies {
             type = "aar"
         }
     }
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.5.2")
 }
 
 afterEvaluate {
@@ -56,7 +59,7 @@ afterEvaluate {
 
                 groupId = "com.github.TempTalkOrg"
                 artifactId = "dtproto"
-                version = findProperty("VERSION_NAME")?.toString() ?: "3.0.0"
+                version = findProperty("VERSION_NAME")?.toString() ?: "3.1.0"
 
                 pom {
                     name.set("DTProto")

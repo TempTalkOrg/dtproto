@@ -1,7 +1,8 @@
 use neon::prelude::*;
 use neon::types::buffer::TypedArray;
 use std::collections::HashMap;
-pub use crate::dtcurve::{DTProto, IdentityVerifyResult};
+pub use crate::dtcurve::{DTProto, DTProtoError, IdentityVerifyResult};
+use crate::group_crypto;
 
 
 pub fn encrypt_message(mut cx: FunctionContext) -> JsResult<JsObject> {
@@ -239,6 +240,89 @@ pub fn encrypt_rtm_message(mut cx: FunctionContext) -> JsResult<JsObject> {
     result.set(&mut cx, "cipher_text", cipher_text)?;
     result.set(&mut cx, "signature", signature)?;
     Ok(result)
+}
+
+fn throw_proto_error<'a>(cx: &mut FunctionContext<'a>, e: DTProtoError) -> NeonResult<()> {
+    let err = JsError::error(cx, e.to_string())?;
+    let code = cx.number(e as i32);
+    err.set(cx, "code", code)?;
+    cx.throw(err)?;
+    unreachable!()
+}
+
+fn vec_to_buffer<'a>(cx: &mut FunctionContext<'a>, data: &[u8]) -> JsResult<'a, JsArrayBuffer> {
+    let mut buf = cx.array_buffer(data.len())?;
+    buf.as_mut_slice(cx).copy_from_slice(data);
+    Ok(buf)
+}
+
+pub fn neon_group_crypto_derive_keys(mut cx: FunctionContext) -> JsResult<JsObject> {
+    let version = cx.argument::<JsNumber>(0)?.value(&mut cx) as u8;
+    let r_group = cx.argument::<JsArrayBuffer>(1)?.as_slice(&cx).to_vec();
+
+    let gc = group_crypto::DTGroupCrypto::new(version);
+    let keys = gc.derive_keys(r_group)
+        .or_else(|e| { throw_proto_error(&mut cx, e)?; unreachable!() })?;
+
+    let result = cx.empty_object();
+    let k_group = vec_to_buffer(&mut cx, &keys.k_group)?;
+    let sk_bind = vec_to_buffer(&mut cx, &keys.sk_bind)?;
+    let pk_bind = vec_to_buffer(&mut cx, &keys.pk_bind)?;
+    result.set(&mut cx, "k_group", k_group)?;
+    result.set(&mut cx, "sk_bind", sk_bind)?;
+    result.set(&mut cx, "pk_bind", pk_bind)?;
+    Ok(result)
+}
+
+pub fn neon_group_crypto_encrypt(mut cx: FunctionContext) -> JsResult<JsArrayBuffer> {
+    let version = cx.argument::<JsNumber>(0)?.value(&mut cx) as u8;
+    let k_group = cx.argument::<JsArrayBuffer>(1)?.as_slice(&cx).to_vec();
+    let plaintext = cx.argument::<JsArrayBuffer>(2)?.as_slice(&cx).to_vec();
+    let aad = cx.argument::<JsArrayBuffer>(3)?.as_slice(&cx).to_vec();
+
+    let gc = group_crypto::DTGroupCrypto::new(version);
+    let blob = gc.encrypt(k_group, plaintext, aad)
+        .or_else(|e| { throw_proto_error(&mut cx, e)?; unreachable!() })?;
+
+    vec_to_buffer(&mut cx, &blob)
+}
+
+pub fn neon_group_crypto_decrypt(mut cx: FunctionContext) -> JsResult<JsArrayBuffer> {
+    let version = cx.argument::<JsNumber>(0)?.value(&mut cx) as u8;
+    let k_group = cx.argument::<JsArrayBuffer>(1)?.as_slice(&cx).to_vec();
+    let blob = cx.argument::<JsArrayBuffer>(2)?.as_slice(&cx).to_vec();
+    let aad = cx.argument::<JsArrayBuffer>(3)?.as_slice(&cx).to_vec();
+
+    let gc = group_crypto::DTGroupCrypto::new(version);
+    let plaintext = gc.decrypt(k_group, blob, aad)
+        .or_else(|e| { throw_proto_error(&mut cx, e)?; unreachable!() })?;
+
+    vec_to_buffer(&mut cx, &plaintext)
+}
+
+pub fn neon_group_crypto_sign_uid(mut cx: FunctionContext) -> JsResult<JsArrayBuffer> {
+    let version = cx.argument::<JsNumber>(0)?.value(&mut cx) as u8;
+    let sk_bind = cx.argument::<JsArrayBuffer>(1)?.as_slice(&cx).to_vec();
+    let uid = cx.argument::<JsString>(2)?.value(&mut cx);
+
+    let gc = group_crypto::DTGroupCrypto::new(version);
+    let signature = gc.sign_uid(sk_bind, uid)
+        .or_else(|e| { throw_proto_error(&mut cx, e)?; unreachable!() })?;
+
+    vec_to_buffer(&mut cx, &signature)
+}
+
+pub fn neon_group_crypto_verify_uid(mut cx: FunctionContext) -> JsResult<JsBoolean> {
+    let version = cx.argument::<JsNumber>(0)?.value(&mut cx) as u8;
+    let pk_bind = cx.argument::<JsArrayBuffer>(1)?.as_slice(&cx).to_vec();
+    let uid = cx.argument::<JsString>(2)?.value(&mut cx);
+    let signature = cx.argument::<JsArrayBuffer>(3)?.as_slice(&cx).to_vec();
+
+    let gc = group_crypto::DTGroupCrypto::new(version);
+    let valid = gc.verify_uid(pk_bind, uid, signature)
+        .or_else(|e| { throw_proto_error(&mut cx, e)?; unreachable!() })?;
+
+    Ok(cx.boolean(valid))
 }
 
 pub fn decrypt_rtm_message(mut cx: FunctionContext) -> JsResult<JsObject> {

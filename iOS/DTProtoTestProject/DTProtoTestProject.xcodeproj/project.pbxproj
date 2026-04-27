@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1051A452A24BF7184AF6B1FB /* DTProto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BAFFA3A4DD9DF67C2F39C /* DTProto.framework */; };
+		195520742093C1936F1A64C6 /* DTProtoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0CC70B3C12981673B1C3EF /* DTProtoAdapter.swift */; };
+		4487A79D3FBB0FEE8EDC3BA3 /* DTProto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 015BAFFA3A4DD9DF67C2F39C /* DTProto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4EC97C68848BE0B304E9FC77 /* DTProtoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B534BD5930F52177884A1 /* DTProtoTests.swift */; };
+		AD20821406697102B3849B59 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3624D5FF120D085085AACF33 /* App.swift */; };
+		E49317F4975242FD90CEABFE /* dtproto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F294F5400574DF52835ECC /* dtproto.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B0D215F9ADAE82BD65414E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB04CEDACA50BA7D081E3B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF567B933A6AA5BB786C0BE4;
+			remoteInfo = DTProto;
+		};
+		AF01BEC1603398441F72F096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB04CEDACA50BA7D081E3B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53B5F79494FD7C8E3F55C061;
+			remoteInfo = DTProtoTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E430E5143533C0CC30682E8A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4487A79D3FBB0FEE8EDC3BA3 /* DTProto.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		015BAFFA3A4DD9DF67C2F39C /* DTProto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DTProto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3624D5FF120D085085AACF33 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		6F9B534BD5930F52177884A1 /* DTProtoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTProtoTests.swift; path = ../DTProtoTests.swift; sourceTree = "<group>"; };
+		D4F294F5400574DF52835ECC /* dtproto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dtproto.swift; path = ../DTProto/dtproto.swift; sourceTree = "<group>"; };
+		E19CF82F780CE06484692DE3 /* DTProtoTestApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DTProtoTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0CC70B3C12981673B1C3EF /* DTProtoAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTProtoAdapter.swift; path = ../DTProto/DTProtoAdapter.swift; sourceTree = "<group>"; };
+		ED4B806E908E859B9A406412 /* DTProtoTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DTProtoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D4489C7B6653FDAF17A1414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1051A452A24BF7184AF6B1FB /* DTProto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		391E680360740DD469051C3C /* TestApp */ = {
+			isa = PBXGroup;
+			children = (
+				3624D5FF120D085085AACF33 /* App.swift */,
+			);
+			path = TestApp;
+			sourceTree = "<group>";
+		};
+		49B7FD9E3AF60D444A30D63F = {
+			isa = PBXGroup;
+			children = (
+				5AEC1FE802345F8772CF8897 /* Sources */,
+				391E680360740DD469051C3C /* TestApp */,
+				7377D0F3BB6C2306D6C57ECC /* Tests */,
+				6CE569F7D4EBB8F42654D214 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5AEC1FE802345F8772CF8897 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D4F294F5400574DF52835ECC /* dtproto.swift */,
+				ED0CC70B3C12981673B1C3EF /* DTProtoAdapter.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		6CE569F7D4EBB8F42654D214 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				015BAFFA3A4DD9DF67C2F39C /* DTProto.framework */,
+				E19CF82F780CE06484692DE3 /* DTProtoTestApp.app */,
+				ED4B806E908E859B9A406412 /* DTProtoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7377D0F3BB6C2306D6C57ECC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6F9B534BD5930F52177884A1 /* DTProtoTests.swift */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		53B5F79494FD7C8E3F55C061 /* DTProtoTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3D6D6572DF6B0D0544A5E73 /* Build configuration list for PBXNativeTarget "DTProtoTestApp" */;
+			buildPhases = (
+				A9707670302AB7FA459CF5BD /* Sources */,
+				6D4489C7B6653FDAF17A1414 /* Frameworks */,
+				E430E5143533C0CC30682E8A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B75867987271C652A33C2E0 /* PBXTargetDependency */,
+			);
+			name = DTProtoTestApp;
+			packageProductDependencies = (
+			);
+			productName = DTProtoTestApp;
+			productReference = E19CF82F780CE06484692DE3 /* DTProtoTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87E50ADC043DE4D156879BCC /* DTProtoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FE047C8DDAD30645F6F0417 /* Build configuration list for PBXNativeTarget "DTProtoTests" */;
+			buildPhases = (
+				7D199DD38739055587988983 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB1E19B2919152A305CDDC36 /* PBXTargetDependency */,
+			);
+			name = DTProtoTests;
+			packageProductDependencies = (
+			);
+			productName = DTProtoTests;
+			productReference = ED4B806E908E859B9A406412 /* DTProtoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AF567B933A6AA5BB786C0BE4 /* DTProto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AA819E394B907F4CE9D66EF /* Build configuration list for PBXNativeTarget "DTProto" */;
+			buildPhases = (
+				252556B57F86A9961863BB90 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DTProto;
+			packageProductDependencies = (
+			);
+			productName = DTProto;
+			productReference = 015BAFFA3A4DD9DF67C2F39C /* DTProto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADB04CEDACA50BA7D081E3B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = FC829900117270AD193664DF /* Build configuration list for PBXProject "DTProtoTestProject" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 49B7FD9E3AF60D444A30D63F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6CE569F7D4EBB8F42654D214 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF567B933A6AA5BB786C0BE4 /* DTProto */,
+				53B5F79494FD7C8E3F55C061 /* DTProtoTestApp */,
+				87E50ADC043DE4D156879BCC /* DTProtoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		252556B57F86A9961863BB90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				195520742093C1936F1A64C6 /* DTProtoAdapter.swift in Sources */,
+				E49317F4975242FD90CEABFE /* dtproto.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D199DD38739055587988983 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EC97C68848BE0B304E9FC77 /* DTProtoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9707670302AB7FA459CF5BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD20821406697102B3849B59 /* App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B75867987271C652A33C2E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF567B933A6AA5BB786C0BE4 /* DTProto */;
+			targetProxy = 6B0D215F9ADAE82BD65414E5 /* PBXContainerItemProxy */;
+		};
+		BB1E19B2919152A305CDDC36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53B5F79494FD7C8E3F55C061 /* DTProtoTestApp */;
+			targetProxy = AF01BEC1603398441F72F096 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C0AD3DA9EA369A6D75050BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/../DTProto/dtprotoFFI";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DTProtoTestApp.app/DTProtoTestApp";
+			};
+			name = Debug;
+		};
+		1C782CE4DF626FEA28752773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.temptalk.dtproto.testapp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		24476E2355DD91EC2CE6C922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../DTProto/libdtproto_ffi/libdtproto_ffi_$(DTPROTO_VERSION)/$(PLATFORM_NAME)";
+				OTHER_LDFLAGS = "-ldtproto_ffi";
+				PRODUCT_BUNDLE_IDENTIFIER = org.temptalk.dtproto;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/../DTProto/dtprotoFFI";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		4B82B2793205B743A8C547DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/../DTProto/dtprotoFFI";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DTProtoTestApp.app/DTProtoTestApp";
+			};
+			name = Release;
+		};
+		A9675D355A7CB25483F919E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DTPROTO_VERSION = 3.1.0;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B5F7BD99F26A5A6828A230C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DTPROTO_VERSION = 3.1.0;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C3D3DDE6D04B21B18F072392 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.temptalk.dtproto.testapp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CEB1FB0A45B6401D230F70B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../DTProto/libdtproto_ffi/libdtproto_ffi_$(DTPROTO_VERSION)/$(PLATFORM_NAME)";
+				OTHER_LDFLAGS = "-ldtproto_ffi";
+				PRODUCT_BUNDLE_IDENTIFIER = org.temptalk.dtproto;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/../DTProto/dtprotoFFI";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2AA819E394B907F4CE9D66EF /* Build configuration list for PBXNativeTarget "DTProto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24476E2355DD91EC2CE6C922 /* Debug */,
+				CEB1FB0A45B6401D230F70B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9FE047C8DDAD30645F6F0417 /* Build configuration list for PBXNativeTarget "DTProtoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C0AD3DA9EA369A6D75050BF /* Debug */,
+				4B82B2793205B743A8C547DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F3D6D6572DF6B0D0544A5E73 /* Build configuration list for PBXNativeTarget "DTProtoTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3D3DDE6D04B21B18F072392 /* Debug */,
+				1C782CE4DF626FEA28752773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FC829900117270AD193664DF /* Build configuration list for PBXProject "DTProtoTestProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9675D355A7CB25483F919E1 /* Debug */,
+				B5F7BD99F26A5A6828A230C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADB04CEDACA50BA7D081E3B9 /* Project object */;
+}

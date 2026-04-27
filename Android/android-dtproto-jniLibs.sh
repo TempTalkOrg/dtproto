@@ -15,7 +15,8 @@ echo "start working."
 cd "${PROJECTPATH}"
 
 # 16KB page alignment for Google Play (targetSdk 35+)
-export RUSTFLAGS="${RUSTFLAGS:-} -C link-arg=-Wl,-z,max-page-size=16384"
+# Only applied to Android cross-compilation targets, not host builds
+ANDROID_RUSTFLAGS="${RUSTFLAGS:-} -C link-arg=-Wl,-z,max-page-size=16384"
 
 # Detect NDK host tag (darwin-x86_64 / linux-x86_64) and generate .cargo/config.toml
 case "$(uname -s)" in
@@ -49,11 +50,6 @@ echo "1. setup."
 rustup target add aarch64-linux-android
 rustup target add armv7-linux-androideabi
 rustup target add x86_64-linux-android
-# Desktop targets are only built locally; skip on JitPack (Linux CI)
-if [ "${JITPACK}" != "true" ]; then
-    rustup target add x86_64-apple-darwin
-    rustup target add x86_64-unknown-linux-gnu
-fi
 
 echo "2. generate kotlin."
 
@@ -64,13 +60,9 @@ cp ${SRCPATH}/uniffi/dtproto/*.kt ${KOTLINPATH}/
 
 echo "3. generate .so"
 
-cargo build --target aarch64-linux-android --release
-cargo build --target armv7-linux-androideabi --release
-cargo build --target x86_64-linux-android --release
-if [ "${JITPACK}" != "true" ]; then
-    cargo build --target x86_64-apple-darwin  --release
-    CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=x86_64-unknown-linux-gnu-gcc cargo build --target x86_64-unknown-linux-gnu --release
-fi
+RUSTFLAGS="${ANDROID_RUSTFLAGS}" cargo build --target aarch64-linux-android --release
+RUSTFLAGS="${ANDROID_RUSTFLAGS}" cargo build --target armv7-linux-androideabi --release
+RUSTFLAGS="${ANDROID_RUSTFLAGS}" cargo build --target x86_64-linux-android --release
 
 # Copy to Gradle module
 mkdir -p ${JNILIBSPATH}/arm64-v8a

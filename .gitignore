@@ -1,7 +1,21 @@
 # Build artifacts
 /target
-*.node
 .cargo/config.toml
+
+# Binaries & archives
+*.node
+*.so
+*.dylib
+*.dll
+*.a
+*.zip
+
+# Desktop
+Desktop/darwin-arm64/
+Desktop/darwin-x64/
+Desktop/linux-x64/
+Desktop/linux-arm64/
+Desktop/win32-x64/
 
 # Android
 Android/NDK/*
@@ -12,7 +26,11 @@ Android/local.properties
 ndk/
 
 # iOS
-iOS/DTProto/**/*.a
+iOS/DTProto/libdtproto_ffi/
+
+# Docs
+docs/
+API_REFERENCE/
 
 # Node
 node_modules/

@@ -1,9 +1,10 @@
 
 
+
 Pod::Spec.new do |s|
 
-  PROTOVERSION = "3.0.0"
-  
+  PROTOVERSION = "3.1.0"
+
   s.name             = "DTProto"
   s.version          = "#{PROTOVERSION}"
   s.summary          = "message protocol"
@@ -24,28 +25,35 @@ message protocol.
   s.source_files = 'DTProto/*.swift'
 
 #  s.ios.vendored_library = 'DTProto/*.a'
-  
+
   s.pod_target_xcconfig = {
     'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/DTProto/dtprotoFFI',
-    'DTPROTOTARGETLIB' => "libuniffi_dtproto_#{PROTOVERSION}",
-    'DTPROTOLIBROOT' => '${PODS_TARGET_SRCROOT}/DTProto/libuniffi_dtproto',
-    'DTPROTO_FFI_LIB_TO_LINK' => '${DTPROTOLIBROOT}/${DTPROTOTARGETLIB}/libuniffi_dtproto.a',
+    'SWIFT_INCLUDE_PATHS' => '$(HEADER_SEARCH_PATHS)',
+    'DTPROTOTARGETLIB' => "libdtproto_ffi_#{PROTOVERSION}",
+    'DTPROTOLIBROOT' => '${PODS_TARGET_SRCROOT}/DTProto/libdtproto_ffi',
+    'DTPROTO_FFI_LIB_TO_LINK' => '${DTPROTOLIBROOT}/${DTPROTOTARGETLIB}/${PLATFORM_NAME}/libdtproto_ffi.a',
     'OTHER_LDFLAGS' => '$(DTPROTO_FFI_LIB_TO_LINK)'
   }
-  
+
+  s.user_target_xcconfig = {
+    'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/../DTProto/dtprotoFFI'
+  }
+
   s.script_phases = [
-      { name: 'Download and cache libuniffi_dtproto',
+      { name: 'Download and cache libdtproto_ffi',
         execution_position: :before_compile,
         script: %q(
            set -euo pipefail
            DTPROTOTARGETLIBZIP="${DTPROTOTARGETLIB}.zip"
-           if [ -e "${DTPROTOLIBROOT}/${DTPROTOTARGETLIB}/libuniffi_dtproto.a" ]; then
+           if [ -e "${DTPROTOLIBROOT}/${DTPROTOTARGETLIB}/${PLATFORM_NAME}/libdtproto_ffi.a" ]; then
              # exists
              exit 0
            fi
+
+           mkdir -p "${DTPROTOLIBROOT}"
            cd "${DTPROTOLIBROOT}"
 
-           curl -OL "https://github.com/TempTalkOrg/dtproto/releases/download/v#{PROTOVERSION}/${DTPROTOTARGETLIBZIP}"
+           curl -O "https://difft-proto-binary.s3.ap-southeast-1.amazonaws.com/${DTPROTOTARGETLIBZIP}"
 
            if [ -e "${DTPROTOTARGETLIBZIP}" ]; then
              unzip "${DTPROTOTARGETLIBZIP}"  -x '__MACOSX/*'
@@ -56,6 +64,6 @@ message protocol.
         )
       }
   ]
-  
-  
+
+
 end

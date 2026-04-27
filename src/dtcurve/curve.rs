@@ -18,7 +18,7 @@ pub const CALL_KEY_LEN: usize = 64;
 /// version >= HKDF_MIN_VERSION 时对 DH 输出做 HKDF 派生
 pub const HKDF_MIN_VERSION: i32 = 3;
 
-#[derive(thiserror::Error, Debug, Clone, Copy)]
+#[derive(thiserror::Error, Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(i32)]
 pub enum DTProtoError {
     #[error("version error!")]
@@ -35,6 +35,26 @@ pub enum DTProtoError {
     EncryptMessageDataError = 6,
     #[error("decrypt message data error!")]
     DecryptMessageDataError = 7,
+    #[error("invalid r_group length, expected 32 bytes")]
+    InvalidRGroupLength = 100,
+    #[error("invalid k_group length, expected 32 bytes")]
+    InvalidKGroupLength = 101,
+    #[error("invalid sk_bind length, expected 32 bytes")]
+    InvalidSkBindLength = 102,
+    #[error("invalid pk_bind length, expected 32 bytes")]
+    InvalidPkBindLength = 103,
+    #[error("invalid pk_bind: not a valid Ed25519 public key")]
+    InvalidPkBindKey = 104,
+    #[error("invalid signature length, expected 64 bytes")]
+    InvalidSignatureLength = 105,
+    #[error("unsupported blob version")]
+    UnsupportedBlobVersion = 106,
+    #[error("blob too short")]
+    BlobTooShort = 107,
+    #[error("group encrypt failed")]
+    GroupEncryptError = 108,
+    #[error("group decrypt failed: wrong key, tampered data, or mismatched aad")]
+    GroupDecryptError = 109,
 }
 
 pub struct DTCurve;

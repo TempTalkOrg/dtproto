@@ -1,6 +1,6 @@
 {
   "name": "dtproto_ffi",
-  "version": "0.1.0",
+  "version": "3.1.0",
   "description": "End-to-end encryption protocol for messaging",
   "main": "index.node",
   "scripts": {
@@ -12,6 +12,7 @@
     "build-arm64": "npm run build -- --release --target=aarch64-apple-darwin",
     "build-debug": "npm run build --",
     "build-release": "npm run build -- --release",
+    "build-desktop": "bash scripts/desktop-build.sh",
     "install": "npm run build-release",
     "test": "cargo test"
   },

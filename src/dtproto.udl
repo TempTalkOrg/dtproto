@@ -2,6 +2,31 @@ namespace dtproto {
   string lib_name();
 };
 
+interface DTGroupCrypto {
+  constructor(u8 version);
+
+  [Throws=DTProtoError]
+  GroupKeySet derive_keys(sequence<u8> r_group);
+
+  [Throws=DTProtoError]
+  sequence<u8> encrypt(sequence<u8> k_group, sequence<u8> plaintext, sequence<u8> aad);
+
+  [Throws=DTProtoError]
+  sequence<u8> decrypt(sequence<u8> k_group, sequence<u8> blob, sequence<u8> aad);
+
+  [Throws=DTProtoError]
+  sequence<u8> sign_uid(sequence<u8> sk_bind, string uid);
+
+  [Throws=DTProtoError]
+  boolean verify_uid(sequence<u8> pk_bind, string uid, sequence<u8> signature);
+};
+
+dictionary GroupKeySet {
+    sequence<u8> k_group;
+    sequence<u8> sk_bind;
+    sequence<u8> pk_bind;
+};
+
 dictionary DTEncryptedMessage {
     sequence<u8> cipher_text;
     sequence<u8> signed_e_key;
@@ -51,6 +76,16 @@ enum DTProtoError {
     "MessageDataLengthError",
     "EncryptMessageDataError",
     "DecryptMessageDataError",
+    "InvalidRGroupLength",
+    "InvalidKGroupLength",
+    "InvalidSkBindLength",
+    "InvalidPkBindLength",
+    "InvalidPkBindKey",
+    "InvalidSignatureLength",
+    "UnsupportedBlobVersion",
+    "BlobTooShort",
+    "GroupEncryptError",
+    "GroupDecryptError",
 };
 
 interface DTProto {
